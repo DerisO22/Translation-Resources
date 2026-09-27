@@ -6,6 +6,17 @@ dotenv.config();
 const API_KEY = process.env.TRANSLATE_API_KEY;
 const URL = `https://translation.googleapis.com/language/translate/v2?key=${API_KEY}`;
 
+interface Translation {
+    translatedText: string;
+    detectedSourceLanguage?: string;
+}
+
+interface TranslationResponse {
+    data: {
+        translations: Translation[]
+    }
+}
+
 export const translate = async() => {
     try {
         const enObjectsArray = await readEnLocales(); 
@@ -34,9 +45,9 @@ export const translate = async() => {
             throw new Error(`HTTP error! Status: ${response.status}`);
         }
 
-        const data = await response.json();
+        const data = await response.json() as TranslationResponse;
 
-        const translatedText = data?.data?.translations[0].translatedText;
+        const translatedText = data?.data?.translations[0]?.translatedText;
         console.log("Translated Text:", translatedText);
     } catch (err) {
         console.error(`Error translating: ${err}`);
