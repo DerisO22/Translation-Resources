@@ -1,3 +1,4 @@
+import { TargetTranslations } from "../util/const.ts";
 import { diffObjects } from "../util/funcs.ts";
 import { readEnLocales } from "./readWriteLocales.ts";
 import dotenv from 'dotenv';
@@ -23,32 +24,49 @@ export const translate = async() => {
 
         if(!enObjectsArray) return;
 
-        const diff = diffObjects(enObjectsArray[0], enObjectsArray[1]);
+        const diffObject = diffObjects(enObjectsArray[0], enObjectsArray[1]);
+        const keys = Object.keys(diffObject);
+        const translationStrings = Object.values(diffObject);
 
         /**
-         *  Handle the actual translations :)
+         *  Handle the actual translations for all supported langauges :)
          */
-        const requestData = {
-            q: diff["HELLO"],
-            target: "fr"
-        }
+        const translationsPromises = TargetTranslations.map(async (target) => {
+            const requestData = {
+                q: translationStrings,
+                target: target
+            }
 
-        const response = await fetch(URL, {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify(requestData)
+            const response = await fetch(URL, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(requestData)
+            });
+    
+            if(!response.ok) {
+                throw new Error(`HTTP error! Status: ${response.status}`);
+            }
+
+            const json = await response.json() as TranslationResponse;
+            const translatedTexts = json.data.translations.map(t => t.translatedText);
+
+            // Need to reconstuct cus the translated strings are just on their
+            // own when we revieve the response
+            const reconstructedObject: Record<string, string> = {};
+            keys.forEach((key, index) => {
+                reconstructedObject[key] = translatedTexts[index] ?? "";
+            });
+
+            return {
+                language: target,
+                translations: reconstructedObject
+            };
         });
 
-        if(!response.ok) {
-            throw new Error(`HTTP error! Status: ${response.status}`);
-        }
-
-        const data = await response.json() as TranslationResponse;
-
-        const translatedText = data?.data?.translations[0]?.translatedText;
-        console.log("Translated Text:", translatedText);
+        const results = await Promise.all(translationsPromises);
+        console.log(results);
     } catch (err) {
         console.error(`Error translating: ${err}`);
     }

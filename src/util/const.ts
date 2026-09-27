@@ -11,3 +11,5 @@ export const LANGUAGES = {
 }
 
 export const ISO_KEYS = [ "en", "de", "es", "fr" ];
+
+export const TargetTranslations = ISO_KEYS.slice(1);
