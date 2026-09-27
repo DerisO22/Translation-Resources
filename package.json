@@ -24,6 +24,7 @@
     "typescript": "^7.0.2"
   },
   "dependencies": {
+    "dotenv": "^18.0.4",
     "fs": "0.0.1-security",
     "path": "^0.12.7"
   }

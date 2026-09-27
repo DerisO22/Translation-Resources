@@ -29,20 +29,18 @@ export const diffObjects = (
     source: TranslationObject = {}, 
     target: TranslationObject = {}
 ): TranslationObject => {
+    // Not currently diffing deeply nested objects, could possibly utilize recursion?
     const diff = Object.keys(source).reduce((acc: any, key) => {
         const sourceValue = source[key];
         const targetValue = target[key];
 
         if(!(key in target) || targetValue === undefined) {
             acc[key] = sourceValue;
-            console.log(acc)
             return acc;
         }
 
         return acc;
     }, {}); 
-
-    console.log(diff);
 
     return diff;
 }

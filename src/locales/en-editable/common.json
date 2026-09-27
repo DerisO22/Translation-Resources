@@ -1,5 +1,4 @@
 {
-    "TEST": "Test",
-    "Hello": "Hello",
-    "Goodbye": "Goodbye"
+    "HELLO": "Hello",
+    "GOODBYE": "Goodbye"
 }

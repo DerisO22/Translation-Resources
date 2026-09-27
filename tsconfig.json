@@ -36,6 +36,7 @@
     "verbatimModuleSyntax": true,
     "isolatedModules": true,
     "moduleDetection": "force",
+    "allowImportingTsExtensions": true,
     "skipLibCheck": true,
   }
 }
