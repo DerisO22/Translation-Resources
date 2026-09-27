@@ -2,7 +2,7 @@ import { readdir, readFile } from 'fs/promises';
 import path from "path";
 
 const EN_EDITABLE_I18 = "../../locales/en-editable/common.json";
-const EN_FINAL_I18 = "../../locales/en-editable/common.json";
+const EN_FINAL_I18 = "../../locales/en/common.json";
 
 export const readEnLocales = async() => {
     try {
@@ -13,8 +13,8 @@ export const readEnLocales = async() => {
         const filePathEditable = path.join(import.meta.dirname, 'data', EN_EDITABLE_I18);
         const filePathFinal = path.join(import.meta.dirname, 'data', EN_FINAL_I18);
 
-        const editableJSON = await readFile(filePathEditable, "utf8");
-        const finalJSON = await readFile(filePathFinal, 'utf-8');
+        const editableJSON = JSON.parse(await readFile(filePathEditable, "utf8"));
+        const finalJSON = JSON.parse(await readFile(filePathFinal, "utf8"));
 
         return [ editableJSON, finalJSON ];
     } catch (err) {
