@@ -56,10 +56,8 @@ export const translate = async() => {
         });
 
         const results = await Promise.all(translationsPromises);
-        return results;
+        return [...results, { language: "en", translations: enObjectsArray[0]}];
     } catch (err) {
         console.error(`Error translating: ${err}`);
     }
 }
-
-translate();

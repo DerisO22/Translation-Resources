@@ -1,5 +1,7 @@
+import path from "path";
 import { sortDeeplyNestedI18Object } from "../util/funcs.ts";
 import { translate } from "./translate.ts";
+import fs from 'fs/promises';
 
 /**
  *  Notes :)
@@ -23,13 +25,22 @@ export const sortObjectsAfterTranslations = async() => {
     try {
         const translatedObjectsArray = await translate();
 
-        const sortedObjects = translatedObjectsArray?.map((translationObject) => {
+        console.log(translatedObjectsArray);
+
+        const sortedObjects = translatedObjectsArray?.map(async(translationObject) => {
             const sortedObject = sortDeeplyNestedI18Object(translationObject.translations);
 
+            /**
+             *  Gotta write to locales
+             */
+            const filePath = path.resolve(import.meta.dirname, `../../src/locales/${translationObject.language}/common.json`);
+
+            await fs.writeFile(filePath, JSON.stringify(sortedObject, null, 2), "utf-8");
+            
             return sortedObject;
         });
 
-        console.log(sortedObjects)
+        console.log(sortedObjects);
     } catch(err) {
 
     }

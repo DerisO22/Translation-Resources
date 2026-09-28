@@ -26,7 +26,7 @@ export const readEnLocales = async() => {
  *  This will write to the final en common.json file
  *  with the sorted translation object
  */
-export const writeFinalEnLocales = async() => {
+export const writeFinalEnLocales = async(filePath: string) => {
     try {
 
     } catch (err) {
