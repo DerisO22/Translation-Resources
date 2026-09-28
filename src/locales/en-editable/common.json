@@ -1,4 +1,6 @@
 {
+    "ANSWER": "Answer",
     "HELLO": "Hello",
-    "GOODBYE": "Goodbye"
+    "GREETING_COMMON": "Hello, how are you?",
+    "GOOGBYE": "Goodbye"
 }
