@@ -39,8 +39,6 @@ export const sortObjectsAfterTranslations = async() => {
             
             return sortedObject;
         });
-
-        console.log(sortedObjects);
     } catch(err) {
 
     }

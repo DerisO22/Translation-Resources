@@ -21,17 +21,3 @@ export const readEnLocales = async() => {
         console.error(`Error reading en locales: ${err}`);
     }
 }
-
-/**
- *  This will write to the final en common.json file
- *  with the sorted translation object
- */
-export const writeFinalEnLocales = async(filePath: string) => {
-    try {
-
-    } catch (err) {
-        console.error(`Error writing to file: ${err}`);
-    }
-}
-
-readEnLocales();
