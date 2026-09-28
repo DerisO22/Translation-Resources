@@ -8,4 +8,5 @@
 
 ## Local Set Up
 - clone repo
-- 
+- run `pnpm install`
+- run `pnpm exec tsx ./src/scripts/main.ts`

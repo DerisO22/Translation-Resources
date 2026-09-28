@@ -17,7 +17,7 @@ import { translate } from "./translate.ts";
 ]
 
  * This function will sort those objects in the array
- * and then call the write function. It will also sort the appended en locale (recieved in param)
+ * and then call the write to locales function. It will also sort the appended en locale (recieved in param)
  */
 export const sortObjectsAfterTranslations = async() => {
     try {
@@ -27,7 +27,7 @@ export const sortObjectsAfterTranslations = async() => {
             const sortedObject = sortDeeplyNestedI18Object(translationObject.translations);
 
             return sortedObject;
-        })
+        });
 
         console.log(sortedObjects)
     } catch(err) {
