@@ -1,8 +1,27 @@
-import { readdir, readFile } from 'fs/promises';
+import { mkdir, readFile, writeFile } from 'fs/promises';
 import path from "path";
 
 const EN_EDITABLE_I18 = "../../locales/en-editable/common.json";
 const EN_FINAL_I18 = "../../locales/en/common.json";
+
+const LOCALES_DIR = path.join(import.meta.dirname, "../locales");
+
+export const localePath = (language: string) => path.join(LOCALES_DIR, language, "common.json");
+
+export const readLocale = async(language: string): Promise<Record<string, string>> => {
+    try {
+        return JSON.parse(await readFile(localePath(language), "utf8"));
+    } catch (err) {
+        if ((err as NodeJS.ErrnoException).code === "ENOENT") return {};
+        throw err;
+    }
+}
+
+export const writeLocale = async(language: string, data: object) => {
+    const filePath = localePath(language);
+    await mkdir(path.dirname(filePath), { recursive: true });
+    await writeFile(filePath, JSON.stringify(data, null, 2), "utf-8");
+}
 
 export const readEnLocales = async() => {
     try {
