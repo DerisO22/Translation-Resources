@@ -4,7 +4,13 @@
   "COMMON_SIDEBAR_TEACHER_PORTAL": "Lehrerportal",
   "GOODBYE": "Auf Wiedersehen",
   "GREETING_COMMON": "Hallo, wie geht es dir?",
+  "GREETING_FORMAL": "Guten Tag, freut mich, Sie kennenzulernen.",
+  "GREETING_TEST": "Hallo, wie geht es dir heute?",
   "HELLO": "Hallo",
   "HERO_SLOGAN_SUBTEXT1": "Ein LMS zur Verwaltung Ihres gesamten Studiums",
-  "HERO_SLOGAN_SUBTEXT2": "College-Erfahrung"
+  "HERO_SLOGAN_SUBTEXT2": "College-Erfahrung",
+  "SECOND_TESTING": "Ich teste das Ding nochmal.",
+  "STRANGE": "SELTSAM",
+  "TESTING": "Ich teste diesen Satz!",
+  "THIRD_TESTING": "Ich teste das Ding nochmal x3"
 }

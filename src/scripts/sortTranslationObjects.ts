@@ -1,7 +1,7 @@
 import path from "path";
 import { sortDeeplyNestedI18Object } from "../util/funcs.ts";
 import { translate } from "./translate.ts";
-import fs from 'fs/promises';
+import fs, { readFile } from 'fs/promises';
 
 /**
  *  Notes :)
@@ -28,7 +28,19 @@ export const sortObjectsAfterTranslations = async() => {
         console.log(translatedObjectsArray);
 
         const sortedObjects = translatedObjectsArray?.map(async(translationObject) => {
-            const sortedObject = sortDeeplyNestedI18Object(translationObject.translations);
+            const existingLanguagePath = path.join(import.meta.dirname, `../../src/locales/${translationObject.language}/common.json`);
+            const existingLanguageJSON = JSON.parse(await readFile(existingLanguagePath, "utf-8"));
+
+            // Notes
+            // There's always a chance that the en will get out of sync with the other langauges
+            // Will create a separate function that restores that.
+
+            const combinedUnsortedObject = { ...existingLanguageJSON, ...translationObject.translations }
+
+            // Notes
+            // This will need to combine the previous locales with the new translated diff keys.
+            // Will return the proper sorted object not just containing the diff keys
+            const sortedObject = sortDeeplyNestedI18Object(combinedUnsortedObject);
 
             /**
              *  Gotta write to locales

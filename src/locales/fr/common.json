@@ -4,7 +4,13 @@
   "COMMON_SIDEBAR_TEACHER_PORTAL": "Portail enseignant",
   "GOODBYE": "Au revoir",
   "GREETING_COMMON": "Bonjour comment allez-vous?",
+  "GREETING_FORMAL": "Bonjour monsieur, enchanté de faire votre connaissance.",
+  "GREETING_TEST": "Bonjour, comment allez-vous aujourd&#39;hui ?",
   "HELLO": "Bonjour",
   "HERO_SLOGAN_SUBTEXT1": "Un seul LMS pour gérer votre expérience universitaire",
-  "HERO_SLOGAN_SUBTEXT2": "Expérience universitaire"
+  "HERO_SLOGAN_SUBTEXT2": "Expérience universitaire",
+  "SECOND_TESTING": "Je teste à nouveau cet appareil.",
+  "STRANGE": "ÉTRANGE",
+  "TESTING": "Test de cette phrase !",
+  "THIRD_TESTING": "Je teste ça encore une fois x3"
 }
