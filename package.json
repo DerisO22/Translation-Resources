@@ -1,6 +1,6 @@
 {
   "name": "rad-translation-resources",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
@@ -15,7 +15,7 @@
     "./locales/*": "./dist/locales/*"
   },
   "scripts": {
-    "build": "tsc",
+    "build": "rm -rf dist && mkdir -p dist && tsc -p tsconfig.build.json && cp -r src/locales dist/locales",
     "prepublishOnly": "npm run build"
   },
   "author": "",
